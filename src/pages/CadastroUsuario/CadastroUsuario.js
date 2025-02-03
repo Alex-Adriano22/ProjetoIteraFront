@@ -22,7 +22,7 @@ export function CadastroUsuario() {
             await UsuarioApi.criarAsync(nome, email, senha, tipoUsuario);
             localStorage.getItem('usuarioNome', nome)
             localStorage.setItem('tipoUsuario', tipoUsuario)
-            navigate("/");
+            navigate("/login");
 
         } else {
             alert("Por favor, preencha todos os campos.");
@@ -48,12 +48,7 @@ export function CadastroUsuario() {
                                 onChange={(e) => setnome(e.target.value)}
                                 placeholder="Digite seu nome"
                                 required
-
-
                             ></input>
-
-
-
                             <input
                                 className={style.Email}
                                 type="text"
@@ -71,33 +66,15 @@ export function CadastroUsuario() {
                                 onChange={(e) => setSenha(e.target.value)}
                                 placeholder="Digite sua senha"
                                 required
-
-
                             ></input>
-
-
-
-
                         </div>
-
-
-
-
                         <div className={style.opa}>
-                            <Button type="submit" variant="outline-light">Entrar</Button>
+                            <Button type="submit" variant="outline-light">Cadastrar</Button>
 
                         </div>
                     </Form>
-
-
                 </div>
-
             </div>
-
-
-
-
-
         </TopBarLogin>
     )
 }

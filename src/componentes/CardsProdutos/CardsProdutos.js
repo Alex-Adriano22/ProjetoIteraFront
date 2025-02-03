@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Black from '../../assets/Black.jpg'; // Coloque a imagem real aqui
+import Black from '../../assets/Black.jpg'; 
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import ProdutosApi from '../../services/ProdutosApi';
 

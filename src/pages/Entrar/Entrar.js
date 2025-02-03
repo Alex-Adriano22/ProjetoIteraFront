@@ -23,7 +23,7 @@ export function Entrar() {
             console.error("Por favor, preencha ambos os campos.");
             return;
         }
-    
+
         try {
             const response = await UsuarioApi.validarLogin(email, senha);
             if (response.success) {
@@ -41,13 +41,14 @@ export function Entrar() {
     };
 
 
-    
+
 
     return (
         <TopBarLogin>
             <div className={style.corpo}>
                 <div className={style.corpo2}>
                     <form onSubmit={handleSubmit}>
+
                         <div className={style.Email_login}>
                             <input
                                 className={style.Email}
@@ -67,22 +68,24 @@ export function Entrar() {
                             />
                         </div>
                         <div className={style.Entrar_button}>
-                        <Button type="submit" variant="outline-light">Entrar</Button>
-                          
+                            <Button type="submit" variant="outline-light">Entrar</Button>
+
+                        </div>
+
+                        <div className={style.Esquci_senha}>
+                            <Link className={style.Senha} to="/senha">
+                                Esqueceu a senha?
+                            </Link>
+                            <Link className={style.criarConta} to="/conta">
+                                Criar uma conta
+                            </Link>
                         </div>
                     </form>
-                    <div className={style.Esquci_senha}>
-                        <Link className={style.Senha} to="/senha">
-                            Esqueceu a senha?
-                        </Link>
-                        <Link className={style.criarConta} to="/conta">
-                            Criar uma conta
-                        </Link>
-                    </div>
+
                 </div>
-            </div>        
-            <Footer/>
+            </div>
+
         </TopBarLogin >
-        
+
     );
 }
