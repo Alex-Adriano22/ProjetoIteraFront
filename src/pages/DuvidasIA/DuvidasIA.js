@@ -1,21 +1,100 @@
+import { useState } from "react";
+import OllamaApi from "../../services/OllamaApi";
 import style from './DuvidasIA.module.css';
-import DeepSeeK from '../../assets/DeepSeek.png';
-import Chat from '../../assets/Chat.png';
+import { TopBarEntrar } from "../../componentes/TopBarEntrar/TopBarEntrar";
+import { TopBarLogin } from "../../componentes/pai/pai";
+import { TopBarIA } from "../../componentes/TopBarIA/TopBarIA";
 
-export function DuvidasIA() {
+export default function ChatIA() {
+    const [mensagem, setMensagem] = useState("");
+
+    const [carregando, setCarregando] = useState(false);
+
+    const [historico, setHistorico] = useState([]);
+
+    async function enviarMensagem() {
+        if (!mensagem.trim()) return;
+
+
+        const novaMensagem = { tipo: "usuario", texto: mensagem };
+        setHistorico((previsaohistorico) => [...previsaohistorico, novaMensagem]);
+
+        setCarregando(true);
+
+        try {
+            const respostaApi = await OllamaApi.Ollama(mensagem);
+            const respostaIA = { tipo: 'ia', texto: respostaApi.response };
+
+
+            setHistorico((previsaohistorico) => [...previsaohistorico, respostaIA])
+        } catch (erro) {
+            console.error("Erro ao obter resposta:", erro);
+            const respostaErro = { tipo: "ia", texto: "Erro ao obter resposta da IA." };
+            setHistorico((prevHistorico) => [...prevHistorico, respostaErro]);
+        } finally {
+            setCarregando(false);
+        }
+    }
+
     return (
-        <div className={style.container}>
-            <h1 className={style.titulo}>Página em Desenvolvimento</h1>
 
-            <div className={style.imagens}>
-                <img src={DeepSeeK} alt="DeepSeek" className={style.imagem} />
-                <img src={Chat} alt="ChatGPT" className={style.imagem} />
+
+
+        <TopBarIA>
+            <div className={style.Corpo_fora}>
+
+
+
+
+                <div className={style.chatContainer}>
+                    <h1 className={style.chatTitle}>Chat com IA</h1>
+
+                    <div className={style.chatHistory}>
+                        {historico.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={msg.tipo === "usuario" ? style.usuarioMensagem : style.iaMensagem}
+
+                            >
+
+                                <p>{msg.texto}</p>
+
+                            </div>
+                        ))}
+                        {carregando && (
+                            <div className={style.carregando}>
+                                <p>Carregando...</p>
+                            </div>
+                        )}
+
+
+                    </div>
+
+
+                    <div className={style.chatInputContainer}>
+                        <input
+                            type="text"
+                            className={style.chatInput}
+                            placeholder="Digite sua pergunta..."
+                            value={mensagem}
+                            onChange={(e) => setMensagem(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && enviarMensagem()}
+                        />
+                        <button
+                            className={style.chatButton}
+                            onClick={enviarMensagem}
+                            disabled={carregando}
+                        >
+                            Enviar
+                        </button>
+                    </div>
+
+                </div>
+
+
             </div>
+        </TopBarIA>
 
-            <h2 className={style.mensagem}>
-                Estamos trabalhando para trazer novidades! <br />
-                Volte em breve para explorar o conteúdo atualizado.
-            </h2>
-        </div>
+
     );
 }

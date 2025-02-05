@@ -10,7 +10,7 @@ import { Produtos } from "./pages/Produtos/Produtos";
 import ProtectedRoute from "./ProtectedRoute";
 import Admin from "./pages/PaginaAdm/PageAdmin";
 import { Carrinho } from "./pages/Carrinho/Carrinho";
-import { DuvidasIA } from "./pages/DuvidasIA/DuvidasIA";
+import  DuvidasIA  from "./pages/DuvidasIA/DuvidasIA";
 
 function App() {
   return (

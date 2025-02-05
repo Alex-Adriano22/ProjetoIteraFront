@@ -1,0 +1,48 @@
+/* .topo_conteudo */
+.topo_conteudo {
+    display: flex;
+    justify-content: space-between; /* Alinha os itens à esquerda */
+    align-items: center;
+    gap: 12px; /* Espaçamento entre os itens */
+    padding: 13px;
+    background-color: #333;
+}
+.logo h1 {
+    font-size: 25px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+   margin-left: 99px;
+}
+
+.top_bar_intens {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 145px;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
+
+}
+
+.item_topbar {
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #b2b5b9;
+}
+
+.link_botao {
+    text-decoration: none;
+    color: inherit;
+    
+}

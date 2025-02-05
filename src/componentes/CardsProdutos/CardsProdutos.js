@@ -42,7 +42,9 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
         setCarrinho(novosProdutos);
         localStorage.setItem("Carrinho", JSON.stringify(novosProdutos));
         setTipoAlerta('success');
+        setMensagemAlerta('Adicionado')
         exibirAlerta(true);
+
     }
 
     const renderizarEstrelas = (nota) => {
@@ -70,45 +72,55 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
     }, []);
 
     return (
-        <div className="container mt-4">
-            <div className="row g-4">
-
-                {/* Mapeamos os produtos para criar os cards */}
-                {produtosFiltrados.map((produto) => (
-                    <div className="col-md-4 mb-4" key={produto.id}>
-                        <Card style={{ width: '20rem' }} className="d-flex flex-column h-100">
-                            <Card.Img variant="top" src={Black} />
-                            <Card.Body className="p-4 flex-grow-1">
-                                <Card.Title>{produto.nome}</Card.Title>
-                                <div className="d-flex align-items-center mb-2">
-                                    {renderizarEstrelas(produto.nota)}
-                                    <span className="ms-2">({produto.nota}.3)</span>
-                                </div>
-                                <Card.Text>{produto.descricao}</Card.Text>
-                                <h5 className="fw-bold text-primary">{formatarPreco(produto.preco)}</h5>
-                                <Button onClick={() => adicionarAoCarrinho(produto)} variant="primary">
-                                    Comprar
-                                </Button>
-                            </Card.Body>
-                        </Card>
+        <>
 
 
-                    </div>
 
-                ))}
-                <div>
-                    <Alerta
-                        tipo={tipoAlerta}
-                        mensagem={mensagemAlerta}
-                        visivel={mostrarAlerta}
-                        aoFechar={() => setMostrarAlerta(false)}
-                    />
+
+            <div className="container mt-4">
+
+                <Alerta
+                    tipo={tipoAlerta}
+                    mensagem={mensagemAlerta}
+                    visivel={mostrarAlerta}
+                    aoFechar={() => setMostrarAlerta(false)}
+                />
+
+
+                <div className="row g-4">
+
+
+                    {/* Mapeamos os produtos para criar os cards */}
+                    {produtosFiltrados.map((produto) => (
+                        <div className="col-md-4 mb-4" key={produto.id}>
+                            <Card style={{ width: '20rem' }} className="d-flex flex-column h-100">
+                                <Card.Img variant="top" src={Black} />
+                                <Card.Body className="p-4 flex-grow-1">
+                                    <Card.Title>{produto.nome}</Card.Title>
+                                    <div className="d-flex align-items-center mb-2">
+                                        {renderizarEstrelas(produto.nota)}
+                                        <span className="ms-2">({produto.nota}.3)</span>
+                                    </div>
+                                    <Card.Text>{produto.descricao}</Card.Text>
+                                    <h5 className="fw-bold text-primary">{formatarPreco(produto.preco)}</h5>
+                                    <Button onClick={() => adicionarAoCarrinho(produto)} variant="primary">
+                                        Comprar
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+
+
+                        </div>
+
+                    ))}
+
 
                 </div>
 
+                
             </div>
 
 
-        </div>
+        </>
     );
 }
