@@ -40,9 +40,6 @@ export function Entrar() {
         }
     };
 
-
-
-
     return (
         <TopBarLogin>
             <div className={style.corpo}>

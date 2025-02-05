@@ -4,21 +4,24 @@ import { Search, ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import UsuarioApi from '../../services/UsuarioApi';
 import ProtectedRoute from '../../ProtectedRoute';
+import { MdLogout } from "react-icons/md";
 
 export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaValor }) {
     const [usuario, setUsuario] = useState({});
     const navigate = useNavigate();
 
 
+  
+
     function removerusuario() {
         localStorage.removeItem("idUsuario");
-        localStorage.removeItem("tipoUsuario");  
-        navigate("/login");  
+        localStorage.removeItem("tipoUsuario");
+        navigate("/login");
     }
 
     const buscarNomeUsuario = async () => {
         const Id = localStorage.getItem("idUsuario");
-     
+
 
         try {
             if (Id) {
@@ -67,9 +70,11 @@ export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaVal
                     {/* Se o idUsuario estiver presente, mostrar nome do usuário */}
                     {localStorage.getItem("idUsuario") ? (
                         <li className={style.item_topbar}>
-                            <Link  onClick={removerusuario} className={style.link}>
+                            <div className={style.link}>
                                 {usuario.nome}
-                            </Link>
+                            </div>
+
+
                         </li>
                     ) : (
                         <li className={style.item_topbar}>
@@ -78,11 +83,7 @@ export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaVal
                             </Link>
                         </li>
                     )}
-                    <li className="item-nav">
-                        <Link to="/produtos" className={style.link}>
-                            Produtos
-                        </Link>
-                    </li>
+
                     <li className="item-nav">
                         <Link to="/DuvidasIA" className={style.link}>
                             DuvidasIA
@@ -96,6 +97,14 @@ export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaVal
                                 <ShoppingCart />
                                 <span className="contagem-carrinho"> {carrinho.length}</span>
                             </button>
+                        </Link>
+                    </li>
+
+                    <li className="item-nav">
+                        <Link to="/login" className={style.link}>
+
+                            <MdLogout onClick={removerusuario} />
+
                         </Link>
                     </li>
                 </ul>

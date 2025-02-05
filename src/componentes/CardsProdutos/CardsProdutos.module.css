@@ -1,0 +1,6 @@
+.alerta-container {
+    margin-top: 20px; /* Espaço entre os cards e o alerta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

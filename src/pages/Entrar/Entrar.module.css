@@ -1,23 +1,23 @@
 
 .Email {
     display: flex;
-    align-items: center; /* Alinha o conteúdo no centro verticalmente */
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    border-radius: 50px; /* Bordas arredondadas mais suaves */
-    padding: 12px 20px; /* Adiciona espaço interno */
-    background-color: #f2f2f2; /* Cor de fundo suave */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
-    border: 1px solid #ddd; /* Borda discreta */
-    font-size: 16px; /* Ajusta o tamanho da fonte */
-    width: 100%; /* Largura ajustada */
-    height: 45px; /* Altura ajustada */
-    transition: all 0.3s ease; /* Efeito de transição para interatividade */
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 50px; 
+    padding: 12px 20px; 
+    background-color: #f2f2f2; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd; 
+    font-size: 16px; 
+    width: 100%;
+    height: 45px; 
+    transition: all 0.3s ease; 
 }
 
 .Email:hover {
-    background-color: #e0e0e0; /* Altera a cor de fundo ao passar o mouse */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Aumenta a sombra ao passar o mouse */
-    border-color: #bbb; /* Muda a cor da borda no hover */
+    background-color: #e0e0e0; 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); 
+    border-color: #bbb; 
 }
 
 

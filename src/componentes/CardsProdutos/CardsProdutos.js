@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Black from '../../assets/Black.jpg'; 
+import Black from '../../assets/Black.jpg';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import ProdutosApi from '../../services/ProdutosApi';
+import Alerta from '../Alerta/Alerta';
 
 export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
 
-        
-    console.log(JSON.parse(localStorage.getItem("Carrinho")));
-
-    
     const [produtos, setProdutos] = useState([]);
 
-  
+
+    const [mostrarAlerta, setMostrarAlerta] = useState(false);
+    const [mensagemAlerta, setMensagemAlerta] = useState('');
+    const [tipoAlerta, setTipoAlerta] = useState('');
+
+
+    const exibirAlerta = () => {
+        setMostrarAlerta(true);
+        setTimeout(() => {
+            setMostrarAlerta(false);
+        }, 10000);
+    };
+
+    console.log(JSON.parse(localStorage.getItem("Carrinho")));
+
+
     async function CarregarProdutos() {
         try {
             const listaProdutos = await ProdutosApi.listarProdutosAsync(true);
             setProdutos(listaProdutos);
+
+
         } catch (error) {
             console.error("Erro ao carregar produtos:", error);
         }
@@ -27,8 +41,10 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
         const novosProdutos = [...carrinho, produto];
         setCarrinho(novosProdutos);
         localStorage.setItem("Carrinho", JSON.stringify(novosProdutos));
+        setTipoAlerta('success');
+        exibirAlerta(true);
     }
- 
+
     const renderizarEstrelas = (nota) => {
         const estrelas = [];
         for (let i = 1; i <= 5; i++) {
@@ -38,11 +54,11 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
     };
 
     const formatarPreco = (valor) => {
-    
-        return parseFloat(valor).toFixed(2);
-      };
 
- 
+        return parseFloat(valor).toFixed(2);
+    };
+
+
     const produtosFiltrados = produtos.filter(produto =>
         produto.nome.toLowerCase().startsWith(pesquisaValor.toLowerCase())
     );
@@ -50,12 +66,13 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
 
     useEffect(() => {
         CarregarProdutos();
-        
-    }, []); 
+
+    }, []);
 
     return (
         <div className="container mt-4">
             <div className="row g-4">
+
                 {/* Mapeamos os produtos para criar os cards */}
                 {produtosFiltrados.map((produto) => (
                     <div className="col-md-4 mb-4" key={produto.id}>
@@ -74,8 +91,21 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
                                 </Button>
                             </Card.Body>
                         </Card>
+
+
                     </div>
+
                 ))}
+                <div>
+                    <Alerta
+                        tipo={tipoAlerta}
+                        mensagem={mensagemAlerta}
+                        visivel={mostrarAlerta}
+                        aoFechar={() => setMostrarAlerta(false)}
+                    />
+
+                </div>
+
             </div>
 
 
