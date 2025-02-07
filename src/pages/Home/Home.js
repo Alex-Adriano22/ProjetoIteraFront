@@ -12,6 +12,7 @@ export function Home() {
 
                 <TopBarEntrar carrinho={carrinho} setPesquisaValor={setPesquisaValor}  pesquisaValor={pesquisaValor}>
                         <BannerInicial />
+                        
                         <CardsProdutos carrinho={carrinho} setCarrinho={setCarrinho} pesquisaValor={pesquisaValor}>
                         </CardsProdutos>
                         <Footer/>

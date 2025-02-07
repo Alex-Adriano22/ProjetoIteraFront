@@ -77,13 +77,6 @@ function Admin({ pesquisaValor = '' }) {
     setProdutoEditando(null);
   };
 
-  const renderizarEstrelas = (nota) => {
-    const estrelas = [];
-    for (let i = 1; i <= 5; i++) {
-      estrelas.push(i <= nota ? <FaStar key={i} color="#FFD700" /> : <FaRegStar key={i} color="#CCCCCC" />);
-    }
-    return estrelas;
-  };
 
   const abrirModalDeletar = (produto) => {
     setProdutoEditando(produto);
@@ -136,7 +129,7 @@ function Admin({ pesquisaValor = '' }) {
                 <Card.Body className="p-4 flex-grow-1">
                   <Card.Title>{produto.nome}</Card.Title>
                   <div className="d-flex align-items-center mb-2">
-                    {renderizarEstrelas(produto.nota)}
+                   
                     <span className="ms-2">({produto.nota}.3)</span>
                   </div>
                   <Card.Text>{produto.descricao}</Card.Text>

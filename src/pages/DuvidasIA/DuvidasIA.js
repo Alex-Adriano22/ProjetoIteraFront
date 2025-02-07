@@ -47,18 +47,15 @@ export default function ChatIA() {
 
 
                 <div className={style.chatContainer}>
-                    <h1 className={style.chatTitle}>Chat com IA</h1>
+                    <h1 className={style.chatTitle}>DuvidasIA</h1>
 
                     <div className={style.chatHistory}>
                         {historico.map((msg, index) => (
                             <div
                                 key={index}
                                 className={msg.tipo === "usuario" ? style.usuarioMensagem : style.iaMensagem}
-
                             >
-
                                 <p>{msg.texto}</p>
-
                             </div>
                         ))}
                         {carregando && (
@@ -66,11 +63,7 @@ export default function ChatIA() {
                                 <p>Carregando...</p>
                             </div>
                         )}
-
-
                     </div>
-
-
                     <div className={style.chatInputContainer}>
                         <input
                             type="text"
@@ -90,11 +83,7 @@ export default function ChatIA() {
                     </div>
 
                 </div>
-
-
             </div>
         </TopBarIA>
-
-
     );
 }

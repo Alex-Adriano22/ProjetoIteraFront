@@ -14,9 +14,6 @@ export function Carrinho() {
     const [produtosRecuperados, setProdutosRecuperados] = useState(JSON.parse(localStorage.getItem("Carrinho")) || []);
     const navigate = useNavigate();
 
-    const renderizarEstrelas = (nota) => {
-        return [...Array(5)].map((_, i) => i < nota ? <FaStar key={i} color="#FFD700" /> : <FaRegStar key={i} color="#CCCCCC" />);
-    };
 
     function Pagina() {
         navigate("/");
@@ -56,9 +53,7 @@ export function Carrinho() {
                                         <Card.Img variant="top" src={Black} />
                                         <Card.Body>
                                             <Card.Title>{produto.nome}</Card.Title>
-                                            <div className="d-flex align-items-center mb-2">
-                                                {renderizarEstrelas(produto.nota)}
-                                            </div>
+                                           
                                             <Card.Text>{produto.descricao}</Card.Text>
                                             <h5 className="fw-bold text-primary">R$ {formatarPreco(produto.preco)}</h5>
                                             <Button variant="danger" onClick={() => removerDoCarrinho (produto.id)}>
@@ -70,7 +65,7 @@ export function Carrinho() {
                             ))}
 
                         </div>
-                        <Button onClick={Pagina} variant="primary" className="mt-3">Finalizar Compra</Button>
+                    
 
                         <div style={{ textAlign: 'center', marginTop: '20px' }}>
                             <h3>Total: R$ {calcularTotalCarrinho()}</h3>

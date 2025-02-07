@@ -101,9 +101,9 @@ export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaVal
                     </li>
 
                     <li className="item-nav">
-                        <Link to="/login" className={style.link}>
+                        <Link to="/login" className={style.linkk}>
 
-                            <MdLogout onClick={removerusuario} />
+                            <MdLogout  onClick={removerusuario} />
 
                         </Link>
                     </li>

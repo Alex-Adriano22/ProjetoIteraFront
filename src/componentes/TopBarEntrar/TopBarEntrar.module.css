@@ -1,10 +1,10 @@
-/* .topo_conteudo */
+
 .topo_conteudo {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 12px;
-    /* Espaçamento entre os itens */
+    
     padding: 12px;
     background-color: #333;
 }
@@ -19,15 +19,15 @@
 
 .botao {
     border-radius: none !important;
-    
+
     color: inherit;
-    
+
 }
 
 .link_botao {
     text-decoration: none;
     color: inherit;
-    
+
 }
 
 .logo h1 {
@@ -45,14 +45,14 @@
 
 
 
-/* Pesquisa */
+
 .pesquisa {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 60%;
     margin-right: 10px;
-    /* Ajuste para remover o empurrão à direita */
+   
     border-radius: 10px;
     background-color: #fff;
     padding: 10px 5px;
@@ -75,7 +75,7 @@
     font-size: 20px;
 }
 
-/* Itens Entrar, Carrinho */
+
 .top_bar_intens {
     display: flex;
     align-items: center;
@@ -102,6 +102,22 @@ span {
     font-weight: bold;
     transition: color 0.3s ease;
 }
+
+.linkk {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.linkk:hover {
+    color: #b2b5b9;
+}
+
 
 .link:hover {
     color: #b2b5b9;
@@ -141,10 +157,10 @@ span {
 
 .botao_carrinho:hover svg {
     color: #a5a4a4;
-    /* Muda a cor do ícone ao passar o mouse */
+    
 }
 
 .botao_carrinho:hover span {
     color: #a5a4a4;
-    /* Muda a cor do ícone ao passar o mouse */
+   
 }

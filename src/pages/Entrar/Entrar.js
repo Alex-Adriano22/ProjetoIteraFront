@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import './Entrar.module.css';
 import { TopBarLogin } from "../../componentes/pai/pai";
 import { Footer } from "../../componentes/Footer/Footer";
+import Alerta from "../../componentes/Alerta/Alerta";
 
 
 export function Entrar() {
@@ -16,11 +17,27 @@ export function Entrar() {
     const [senha, setSenha] = useState("");
     const navigate = useNavigate();
 
+
+    const [mostrarAlerta, setMostrarAlerta] = useState(false);
+    const [mensagemAlerta, setMensagemAlerta] = useState('');
+    const [tipoAlerta, setTipoAlerta] = useState('');
+
+
+    const exibirAlerta = () => {
+        setMostrarAlerta(true);
+        setTimeout(() => {
+            setMostrarAlerta(false);
+        }, 60000);
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!email || !senha) {
-            console.error("Por favor, preencha ambos os campos.");
+            setTipoAlerta('danger')
+            setMensagemAlerta('Senha ou e-mail incorretos. Tente novamente.')
+            exibirAlerta()
             return;
         }
 
@@ -29,19 +46,32 @@ export function Entrar() {
             if (response.success) {
                 localStorage.setItem("tipoUsuario", response.tipoUsuario);
                 localStorage.setItem("idUsuario", response.usuarioId);
-                console.log("Login bem-sucedido!");
+
+                setTipoAlerta('success')
+                setMensagemAlerta('Login bem-sucedido!')
+                exibirAlerta()
+
+              
+                
                 navigate("/");
             } else {
                 console.error(response.message || "Erro ao tentar fazer login.");
+
             }
         } catch (error) {
             console.error("Erro ao tentar fazer login:", error);
-            alert("Senha incorreta");
+
+            setTipoAlerta('danger')
+            setMensagemAlerta('Senha ou e-mail incorretos. Tente novamente.')
+            exibirAlerta()
         }
     };
 
+
     return (
         <TopBarLogin>
+
+
             <div className={style.corpo}>
                 <div className={style.corpo2}>
                     <form onSubmit={handleSubmit}>
@@ -80,7 +110,20 @@ export function Entrar() {
                     </form>
 
                 </div>
+                <div className={style.Alerta_inferior}>
+
+                    <Alerta className={style.erro}
+                        tipo={tipoAlerta}
+                        mensagem={mensagemAlerta}
+                        visivel={mostrarAlerta}
+                        aoFechar={() => setMostrarAlerta(false)}
+
+
+                    />
+                </div>
+
             </div>
+
 
         </TopBarLogin >
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Black from '../../assets/Black.jpg';
-import { FaStar, FaRegStar } from 'react-icons/fa';
 import ProdutosApi from '../../services/ProdutosApi';
 import Alerta from '../Alerta/Alerta';
+import style from "./CardsProdutos.module.css"
 
 export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
 
@@ -20,7 +20,7 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
         setMostrarAlerta(true);
         setTimeout(() => {
             setMostrarAlerta(false);
-        }, 10000);
+        }, 1000);
     };
 
     console.log(JSON.parse(localStorage.getItem("Carrinho")));
@@ -47,13 +47,7 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
 
     }
 
-    const renderizarEstrelas = (nota) => {
-        const estrelas = [];
-        for (let i = 1; i <= 5; i++) {
-            estrelas.push(i <= nota ? <FaStar key={i} color="#FFD700" /> : <FaRegStar key={i} color="#CCCCCC" />);
-        }
-        return estrelas;
-    };
+
 
     const formatarPreco = (valor) => {
 
@@ -73,22 +67,8 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
 
     return (
         <>
-
-
-
-
-            <div className="container mt-4">
-
-                <Alerta
-                    tipo={tipoAlerta}
-                    mensagem={mensagemAlerta}
-                    visivel={mostrarAlerta}
-                    aoFechar={() => setMostrarAlerta(false)}
-                />
-
-
-                <div className="row g-4">
-
+            <div className={style.container_total}>
+                <div className={style.container_produtos}>
 
                     {/* Mapeamos os produtos para criar os cards */}
                     {produtosFiltrados.map((produto) => (
@@ -97,30 +77,29 @@ export function CardsProdutos({ carrinho, setCarrinho, pesquisaValor }) {
                                 <Card.Img variant="top" src={Black} />
                                 <Card.Body className="p-4 flex-grow-1">
                                     <Card.Title>{produto.nome}</Card.Title>
-                                    <div className="d-flex align-items-center mb-2">
-                                        {renderizarEstrelas(produto.nota)}
-                                        <span className="ms-2">({produto.nota}.3)</span>
-                                    </div>
+
                                     <Card.Text>{produto.descricao}</Card.Text>
                                     <h5 className="fw-bold text-primary">{formatarPreco(produto.preco)}</h5>
                                     <Button onClick={() => adicionarAoCarrinho(produto)} variant="primary">
-                                        Comprar
+                                        Adicionar
                                     </Button>
                                 </Card.Body>
                             </Card>
-
-
                         </div>
-
                     ))}
 
-
                 </div>
+                <div className={style.alerta_container}>
+                    <Alerta
+                        tipo={tipoAlerta}
+                        mensagem={mensagemAlerta}
+                        visivel={mostrarAlerta}
+                        aoFechar={() => setMostrarAlerta(false)}
+                    
 
-                
+                    />
+                </div>
             </div>
-
-
         </>
     );
 }

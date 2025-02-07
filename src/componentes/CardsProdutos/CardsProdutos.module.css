@@ -1,6 +1,35 @@
-.alerta-container {
-   
+.container_total {
+    width: 90%;
+    height: 75vh;
+
+    margin: 0 auto 70px auto;
+
+}
+
+.container_produtos {
+
+    
+
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    margin-top: 30px;
+
+
+    overflow-y: scroll;
+    width: 100%;
+    height: 75vh;
+}
+
+/* Esconde a barra de rolagem no Chrome, Safari e Opera */
+.container_produtos::-webkit-scrollbar {
+    display: none;
+}
+
+.alerta_container{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+
 }
