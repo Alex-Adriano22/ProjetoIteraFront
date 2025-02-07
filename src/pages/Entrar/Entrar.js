@@ -27,7 +27,7 @@ export function Entrar() {
         setMostrarAlerta(true);
         setTimeout(() => {
             setMostrarAlerta(false);
-        }, 60000);
+        }, 2000);
     };
 
 
@@ -51,9 +51,11 @@ export function Entrar() {
                 setMensagemAlerta('Login bem-sucedido!')
                 exibirAlerta()
 
-              
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000);
+
                 
-                navigate("/");
             } else {
                 console.error(response.message || "Erro ao tentar fazer login.");
 

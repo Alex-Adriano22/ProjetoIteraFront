@@ -13,7 +13,7 @@ const OllamaApi = {
                 prompt: mensagem  
             };
             console.log('request',request);
-            const response = await HTTPClient.post(`/api/Ollama/gerador`, request);
+            const response = await HTTPClient.post(`/api/Ollama/Geradortexto`, request);
 
             console.log('responseee',response.data)
             return response.data;

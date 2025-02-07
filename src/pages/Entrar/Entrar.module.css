@@ -102,8 +102,9 @@
     display: flex;
     position: fixed;   
     bottom: 0;        
-    right: 0;         
-    width: 20vh;       
+    right: 0;   
+    justify-content: flex-end;      
+    width: 100%;       
     padding: 10px;     
 }
 

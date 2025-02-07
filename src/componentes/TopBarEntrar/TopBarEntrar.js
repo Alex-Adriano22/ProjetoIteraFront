@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import UsuarioApi from '../../services/UsuarioApi';
 import ProtectedRoute from '../../ProtectedRoute';
 import { MdLogout } from "react-icons/md";
+import LOGO from '../../assets/LOGO.png';
 
 export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaValor }) {
     const [usuario, setUsuario] = useState({});
@@ -42,9 +43,11 @@ export function TopBarEntrar({ carrinho, children, setPesquisaValor, pesquisaVal
             <div className={style.topo_conteudo}>
                 <div className={style.logo_pesquisa}>
                     <div className={style.logo}>
-                        <Link to='/' className={style.link_botao}>
+                        <Link  to='/' className={style.link_botao}>
+                            
                             <h1>Pro2 Adesivos</h1>
                         </Link>
+                  
                     </div>
 
                     <div className={style.pesquisa}>
